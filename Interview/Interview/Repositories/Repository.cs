@@ -23,7 +23,16 @@ namespace Interview.Repositories
 
         public void Delete(I id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new NullReferenceException("The Id provided is null");
+
+            var item = Get(id);
+
+            if (item == null)
+                throw new InvalidOperationException("The item to delete does not exist.");
+
+            //TODO: May not handle complex types.
+            Items.Remove(item);
         }
 
         public T Get(I id)
