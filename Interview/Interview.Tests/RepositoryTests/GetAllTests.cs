@@ -8,11 +8,11 @@ using Xunit;
 
 namespace Interview.Tests
 {
-    public class RepositoryTests
+    public class GetAllTests
     {
         private List<Product> products;
 
-        public RepositoryTests()
+        public GetAllTests()
         {
             products = new List<Product>
             {
