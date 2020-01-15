@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interview.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Interview.Tests
         [Fact]
         public void GetAll_WhenRepositoryHasItems_ReturnsArrayWithItems()
         {
-            var repository = new Repository<Product, int>(products);
+            var repository = new ProductRepository(products);
 
             var result = repository.GetAll();
 
@@ -33,7 +34,7 @@ namespace Interview.Tests
         [Fact]
         public void GetAll_WhenRepositoryHasItems_ReturnsArrayWithItemsOfCorrectType()
         {
-            var repository = new Repository<Product, int>(products);
+            var repository = new ProductRepository(products);
 
             var result = repository.GetAll();
 

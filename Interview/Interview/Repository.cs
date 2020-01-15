@@ -12,7 +12,7 @@ namespace Interview
     {
         private IEnumerable<T> Items; 
         
-        public Repository(List<T> items)
+        public Repository(IEnumerable<T> items)
         {
             this.Items = items;
         }
