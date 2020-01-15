@@ -8,6 +8,6 @@ namespace Interview.Entities
 {
     public class EntityWithStringId : IStoreable<string>
     {
-        public string Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Id { get; set; }
     }
 }

@@ -19,7 +19,6 @@ namespace Interview.Tests
         {
             items = new List<EntityWithStringId>
             {
-                new EntityWithStringId{ Id=UnknownId },
                 new EntityWithStringId{ Id=KnownId }
             };
         }
@@ -29,7 +28,7 @@ namespace Interview.Tests
         {
             var repository = new Repository<EntityWithStringId, string>();
 
-            Assert.Throws<Exception>(() => { repository.Get(null); });
+            Assert.Throws<NullReferenceException>(() => { repository.Get(null); });
         }
 
         [Fact]
@@ -47,7 +46,7 @@ namespace Interview.Tests
         {
             var repository = new Repository<EntityWithStringId, string>(items);
 
-            var result = repository.Get(KnownId);
+            var result = repository.Get("2");
 
             Assert.NotNull(result);
         }
@@ -57,7 +56,7 @@ namespace Interview.Tests
         {
             var repository = new Repository<EntityWithStringId, string>(items);
 
-            var result = repository.Get(KnownId);
+            var result = repository.Get("2");
 
             Assert.Equal(KnownId, result.Id);
         }

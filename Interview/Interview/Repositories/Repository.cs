@@ -29,7 +29,10 @@ namespace Interview
 
         public T Get(I id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new NullReferenceException();
+
+            return Items.SingleOrDefault(item => item.Id.Equals(id));
         }
 
         public IEnumerable<T> GetAll()
