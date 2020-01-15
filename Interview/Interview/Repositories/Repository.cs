@@ -12,6 +12,11 @@ namespace Interview
     {
         private IEnumerable<T> Items; 
         
+        public Repository()
+        {
+
+        }
+
         public Repository(IEnumerable<T> items)
         {
             this.Items = items;
