@@ -32,7 +32,7 @@ namespace Interview.Tests
         }
 
         [Fact]
-        public void GetAll_GivenIdHasNoItem_ReturnsNull()
+        public void Get_GivenIdHasNoItem_ReturnsNull()
         {
             var repository = new Repository<IStoreable<string>, string>(items);
 
@@ -42,7 +42,7 @@ namespace Interview.Tests
         }
 
         [Fact]
-        public void GetAll_GivenIdIsIntAndHasItem_ReturnsItemIsNotNull()
+        public void Get_GivenIdIsIntAndHasItem_ReturnsItemIsNotNull()
         {
             var repository = new Repository<IStoreable<int>, int>(
                 new List<IStoreable<int>> { new Storeable<int> { Id = 2 } }
@@ -54,7 +54,7 @@ namespace Interview.Tests
         }
 
         [Fact]
-        public void GetAll_GivenIdIsIntAndHasItem_ReturnsItemWithId()
+        public void Get_GivenIdIsIntAndHasItem_ReturnsItemWithId()
         {
             var repository = new Repository<IStoreable<int>, int>(
                new List<IStoreable<int>> { new Storeable<int> { Id = 2 } }
@@ -66,7 +66,7 @@ namespace Interview.Tests
         }
 
         [Fact]
-        public void GetAll_GivenIdIsStringHasItem_ReturnsItemIsNotNull()
+        public void Get_GivenIdIsStringHasItem_ReturnsItemIsNotNull()
         {
             var repository = new Repository<IStoreable<string>, string>(items);
 
@@ -76,7 +76,7 @@ namespace Interview.Tests
         }
 
         [Fact]
-        public void GetAll_GivenIdIsStringAndHasItem_ReturnsItemWithId()
+        public void Get_GivenIdIsStringAndHasItem_ReturnsItemWithId()
         {
             var repository = new Repository<IStoreable<string>, string>(items);
 
