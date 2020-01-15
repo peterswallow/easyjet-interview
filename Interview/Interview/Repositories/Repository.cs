@@ -8,16 +8,15 @@ namespace Interview.Repositories
 {
     public class Repository<T, I> : IRepository<T, I>
         where T : IStoreable<I>
-
     {
-        private IEnumerable<T> Items; 
+        private IList<T> Items; 
         
         public Repository()
         {
-
+            Items = new List<T>();
         }
 
-        public Repository(IEnumerable<T> items)
+        public Repository(IList<T> items)
         {
             this.Items = items;
         }
@@ -42,7 +41,13 @@ namespace Interview.Repositories
 
         public void Save(T item)
         {
-            throw new NotImplementedException();
+            if (item == null)
+                throw new NullReferenceException("No item was given to save.");
+
+            if (Get(item.Id) != null)
+                throw new InvalidOperationException("An item with this Id already exists.");
+
+            Items.Add(item);
         }
     }
 }
