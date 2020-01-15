@@ -42,7 +42,31 @@ namespace Interview.Tests
         }
 
         [Fact]
-        public void GetAll_GivenIdHasItem_ReturnsItemIsNotNull()
+        public void GetAll_GivenIdIsIntAndHasItem_ReturnsItemIsNotNull()
+        {
+            var repository = new Repository<IStoreable<int>, int>(
+                new List<IStoreable<int>> { new Storeable<int> { Id = 2 } }
+            );
+
+            var result = repository.Get(2);
+
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public void GetAll_GivenIdIsIntAndHasItem_ReturnsItemWithId()
+        {
+            var repository = new Repository<IStoreable<int>, int>(
+               new List<IStoreable<int>> { new Storeable<int> { Id = 2 } }
+           );
+
+            var result = repository.Get(2);
+
+            Assert.Equal(2, result.Id);
+        }
+
+        [Fact]
+        public void GetAll_GivenIdIsStringHasItem_ReturnsItemIsNotNull()
         {
             var repository = new Repository<IStoreable<string>, string>(items);
 
@@ -52,7 +76,7 @@ namespace Interview.Tests
         }
 
         [Fact]
-        public void GetAll_GivenIdHasItem_ReturnsItemWithId()
+        public void GetAll_GivenIdIsStringAndHasItem_ReturnsItemWithId()
         {
             var repository = new Repository<IStoreable<string>, string>(items);
 
