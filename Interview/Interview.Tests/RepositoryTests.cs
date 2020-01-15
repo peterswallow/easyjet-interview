@@ -21,13 +21,23 @@ namespace Interview.Tests
         }
 
         [Fact]
-        public void GetAll_WhenCalled_ReturnsArrayWithItems()
+        public void GetAll_WhenRepositoryHasItems_ReturnsArrayWithItems()
         {
             var repository = new Repository<Product, int>(products);
 
             var result = repository.GetAll();
 
             Assert.Equal(2, result.Count());
+        }
+
+        [Fact]
+        public void GetAll_WhenRepositoryHasItems_ReturnsArrayWithItemsOfCorrectType()
+        {
+            var repository = new Repository<Product, int>(products);
+
+            var result = repository.GetAll();
+
+            Assert.IsType<Product>(result.First());
         }
     }
 }
