@@ -10,6 +10,13 @@ namespace Interview
         where T : IStoreable<I>
 
     {
+        private IEnumerable<T> Items; 
+        
+        public Repository(List<T> items)
+        {
+            this.Items = items;
+        }
+
         public void Delete(I id)
         {
             throw new NotImplementedException();
@@ -22,7 +29,7 @@ namespace Interview
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return this.Items;
         }
 
         public void Save(T item)
