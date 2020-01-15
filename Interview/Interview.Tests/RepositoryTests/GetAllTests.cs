@@ -17,8 +17,8 @@ namespace Interview.Tests
         {
             items = new List<IStoreable<int>>
             {
-                new Storeable<int>(),
-                new Storeable<int>()
+                new Storeable<int>{ Id=1 },
+                new Storeable<int>{ Id=2 }
             };
         }
 

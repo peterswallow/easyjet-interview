@@ -9,16 +9,16 @@ namespace Interview.Repositories
     public class Repository<T, I> : IRepository<T, I>
         where T : IStoreable<I>
     {
-        private IList<T> Items; 
+        private Dictionary<I, T> Items; 
         
         public Repository()
         {
-            Items = new List<T>();
+            Items = new Dictionary<I, T>();
         }
 
-        public Repository(IList<T> items)
+        public Repository(IEnumerable<T> items)
         {
-            this.Items = items;
+            this.Items = items.ToDictionary(item => item.Id, item => item);
         }
 
         public void Delete(I id)
@@ -26,13 +26,10 @@ namespace Interview.Repositories
             if (id == null)
                 throw new NullReferenceException("The Id provided is null");
 
-            var item = Get(id);
-
-            if (item == null)
+            if (!Items.ContainsKey(id))
                 throw new InvalidOperationException("The item to delete does not exist.");
 
-            //TODO: May not handle complex types.
-            Items.Remove(item);
+            Items.Remove(id);
         }
 
         public T Get(I id)
@@ -40,12 +37,15 @@ namespace Interview.Repositories
             if (id == null)
                 throw new NullReferenceException();
 
-            return Items.SingleOrDefault(item => item.Id.Equals(id));
+            T value;
+            Items.TryGetValue(id, out value);
+            
+            return value;
         }
 
         public IEnumerable<T> GetAll()
         {
-            return this.Items;
+            return Items.Values.ToList();
         }
 
         public void Save(T item)
@@ -53,10 +53,10 @@ namespace Interview.Repositories
             if (item == null)
                 throw new NullReferenceException("No item was given to save.");
 
-            if (Get(item.Id) != null)
+            if (Items.ContainsKey(item.Id))
                 throw new InvalidOperationException("An item with this Id already exists.");
 
-            Items.Add(item);
+            Items.Add(item.Id, item);
         }
     }
 }
