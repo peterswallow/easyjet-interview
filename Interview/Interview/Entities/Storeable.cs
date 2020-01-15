@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Interview.Entities
 {
-    public class EntityWithStringId : IStoreable<string>
+    public class Storeable<T> : IStoreable<T>
     {
-        public string Id { get; set; }
+        public T Id { get; set; }
     }
 }

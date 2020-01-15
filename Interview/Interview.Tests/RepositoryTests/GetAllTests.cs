@@ -1,4 +1,5 @@
-﻿using Interview.Repositories;
+﻿using Interview.Entities;
+using Interview.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,21 @@ namespace Interview.Tests
 {
     public class GetAllTests
     {
-        private List<Product> products;
+        private List<IStoreable<int>> items;
 
         public GetAllTests()
         {
-            products = new List<Product>
+            items = new List<IStoreable<int>>
             {
-                new Product(),
-                new Product()
+                new Storeable<int>(),
+                new Storeable<int>()
             };
         }
 
         [Fact]
         public void GetAll_WhenRepositoryHasItems_ReturnsArrayWithItems()
         {
-            var repository = new ProductRepository(products);
+            var repository = new Repository<IStoreable<int>, int>(items);
 
             var result = repository.GetAll();
 
@@ -34,11 +35,11 @@ namespace Interview.Tests
         [Fact]
         public void GetAll_WhenRepositoryHasItems_ReturnsArrayWithItemsOfCorrectType()
         {
-            var repository = new ProductRepository(products);
+            var repository = new Repository<IStoreable<int>, int>(items);
 
             var result = repository.GetAll();
 
-            Assert.IsType<Product>(result.First());
+            Assert.IsType<Storeable<int>>(result.First());
         }
     }
 }

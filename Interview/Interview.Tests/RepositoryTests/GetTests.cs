@@ -13,20 +13,20 @@ namespace Interview.Tests
     {
         private const string UnknownId = "1";
         private const string KnownId = "2";
-        private List<EntityWithStringId> items;
+        private List<IStoreable<string>> items;
 
         public GetTests()
         {
-            items = new List<EntityWithStringId>
+            items = new List<IStoreable<string>>
             {
-                new EntityWithStringId{ Id=KnownId }
+                new Storeable<string>{ Id=KnownId }
             };
         }
 
         [Fact]
         public void Get_WhenIdIsNull_ThrowsExecption()
         {
-            var repository = new Repository<EntityWithStringId, string>();
+            var repository = new Repository<IStoreable<string>, string>();
 
             Assert.Throws<NullReferenceException>(() => { repository.Get(null); });
         }
@@ -34,7 +34,7 @@ namespace Interview.Tests
         [Fact]
         public void GetAll_GivenIdHasNoItem_ReturnsNull()
         {
-            var repository = new Repository<EntityWithStringId, string>(items);
+            var repository = new Repository<IStoreable<string>, string>(items);
 
             var result = repository.Get(UnknownId);
 
@@ -44,7 +44,7 @@ namespace Interview.Tests
         [Fact]
         public void GetAll_GivenIdHasItem_ReturnsItemIsNotNull()
         {
-            var repository = new Repository<EntityWithStringId, string>(items);
+            var repository = new Repository<IStoreable<string>, string>(items);
 
             var result = repository.Get("2");
 
@@ -54,7 +54,7 @@ namespace Interview.Tests
         [Fact]
         public void GetAll_GivenIdHasItem_ReturnsItemWithId()
         {
-            var repository = new Repository<EntityWithStringId, string>(items);
+            var repository = new Repository<IStoreable<string>, string>(items);
 
             var result = repository.Get("2");
 
